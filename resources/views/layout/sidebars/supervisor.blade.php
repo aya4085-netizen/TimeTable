@@ -50,6 +50,7 @@
     </div>
 
     <div class="mt-3">
+    <hr class="my-2">
         <form action="{{ route('logout') }}" method="POST">
             @csrf
             <button class="nav-link d-flex align-items-center border-0 bg-transparent w-100" type="submit">

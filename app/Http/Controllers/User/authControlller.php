@@ -39,9 +39,9 @@ class authControlller extends Controller
 
         return match ($role) {
             'supervisor' => redirect()->route('supervisor.dashboard'),
-            'registrar'  => redirect()->route('section.index'),
+            'registrar'  => redirect()->route('registrar.dashboard'),
             'teacher'    => redirect()->route('teacher.timetable'), // عدليها لاحقًا
-            'student'    => redirect()->route('dashboard'), // عدليها لاحقًا
+            'student'    => redirect()->route('student.dashboard'), // عدليها لاحقًا
             default      => redirect()->route('dashboard'),
         };
     }

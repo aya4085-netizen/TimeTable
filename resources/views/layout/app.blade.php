@@ -19,7 +19,7 @@
         .sidebar .nav-link { color:#333;font-size:15px;padding:10px 16px;border-radius:999px;margin-bottom:6px; }
         .sidebar .nav-link i { color: var(--primary-color); margin-left:8px;font-size:18px; }
         .sidebar .nav-link.active, .sidebar .nav-link:hover { background:#fff; }
-        .main-title { font-size:30px;font-weight:700;margin-bottom:24px; }
+        .main-title { font-size:30px;font-weight:700;margin-bottom:16px; }
         .card-soft { background: var(--card-bg); border:none; border-radius:10px; }
         .btn-primary-custom { background: var(--primary-color); border-color: var(--primary-color); }
         .btn-primary-custom:hover { background:#8e347b; border-color:#8e347b; }
@@ -51,9 +51,10 @@
         @endif
     @endauth
 
-    <main class="flex-grow-1 p-4">
-        @yield('content')
-    </main>
+  <main class="flex-grow-1 px-4 pt-2 pb-4">
+    @yield('content')
+</main>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

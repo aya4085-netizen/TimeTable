@@ -91,4 +91,21 @@ class ChangeController extends Controller
 
         return view('Teacher.change_requests.index', compact('teacher','requests'));
     }
+    public function destroy($id)
+{
+    $teacher = Teacher::where('user_id', auth()->id())->firstOrFail();
+
+    $req = ChangeRequest::where('id', $id)
+        ->where('teacher_id', $teacher->id)
+        ->firstOrFail();
+
+    if ($req->status !== 'pending') {
+        return back()->with('error', 'لا يمكن حذف طلب تم الرد عليه.');
+    }
+
+    $req->delete();
+
+    return back()->with('success', 'تم حذف الطلب بنجاح.');
+}
+
 }

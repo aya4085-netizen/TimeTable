@@ -33,6 +33,7 @@
 
     {{-- Footer --}}
     <div class="mt-3">
+    <hr class="my-2">
         <form action="{{ route('logout') }}" method="POST">
             @csrf
             <button type="submit"

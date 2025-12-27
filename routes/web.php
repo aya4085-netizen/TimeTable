@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Register\ReDashboardController;
+use App\Http\Controllers\Register\StudentController;
+use App\Http\Controllers\Register\transferController;
 use App\Http\Controllers\Supervisor\ChangeRequestController;
 use App\Http\Controllers\Teacher\ChangeController;
 use Illuminate\Support\Facades\Route;
@@ -159,6 +162,9 @@ Route::middleware(['auth'])
 
         Route::post('/change-requests/{session}', [ChangeController::class, 'store'])
         ->name('teacher.change_requests.store');
+        Route::delete('/teacher/change-requests/{request}', [ChangeController::class, 'destroy'])
+        ->name('teacher.change_requests.destroy');
+
     });
 
 
@@ -173,3 +179,47 @@ Route::middleware(['auth'])
         Route::get('/dashboard', [StudentDashboardController::class, 'index'])
             ->name('student.dashboard');
     });
+
+
+
+Route::middleware(['auth'])
+    ->prefix('registrar')
+    ->name('registrar.')
+    ->group(function () {
+
+        Route::get('/dashboard', [ReDashboardController::class, 'index'])
+            ->name('dashboard');
+
+        Route::get('/students', [StudentController::class,'index'])
+            ->name('students.index');
+
+        Route::get('/students/create', [StudentController::class,'create'])
+            ->name('students.create');
+
+        Route::post('/students', [StudentController::class,'store'])
+            ->name('students.store');
+
+        Route::get('/students/{student}', [StudentController::class,'show'])
+            ->name('students.show');
+
+        Route::get('/students/{student}/edit', [StudentController::class,'edit'])
+            ->name('students.edit');
+
+        Route::put('/students/{student}', [StudentController::class,'update'])
+            ->name('students.update');
+
+        Route::delete('/students/{student}', [StudentController::class,'destroy'])
+            ->name('students.destroy');
+        Route::get('/moves/transfer', [transferController::class, 'create'])
+            ->name('moves.transfer.create');
+
+        Route::post('/moves/transfer', [transferController::class, 'store'])
+            ->name('moves.transfer.store');
+        Route::get('/moves/promote', [transferController::class,'createPromote'])
+            ->name('moves.promote.create');
+        Route::post('/moves/promote', [transferController::class,'storePromote'])
+            ->name('moves.promote.store');
+
+    });
+
+  

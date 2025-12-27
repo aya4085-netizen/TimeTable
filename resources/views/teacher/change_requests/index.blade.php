@@ -21,19 +21,22 @@
   <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 
+@if(session('error'))
+  <div class="alert alert-danger">{{ session('error') }}</div>
+@endif
+
 <div class="card card-soft">
   <div class="card-body p-0">
     <table class="table mb-0 align-middle text-center">
       <thead>
         <tr>
-          <th>#</th>
+          <th style="width:70px;">#</th>
           <th>الحصة</th>
           <th>السبب</th>
-          <th>الحالة</th>
-          <th>رد المشرف</th>
-          <th>تاريخ الرد</th>
-        </tr>
+          <th style="width:140px;">الحالة</th>
+         
       </thead>
+
       <tbody>
       @forelse($requests as $r)
         @php
@@ -56,7 +59,9 @@
             </div>
           </td>
 
-          <td>{{ $r->reason ?? '-' }}</td>
+          <td class="text-start" style="max-width:420px;">
+            {{ $r->reason ?? '-' }}
+          </td>
 
           <td>
             @if($r->status === 'pending')
@@ -68,12 +73,11 @@
             @endif
           </td>
 
-          <td>{{ $r->supervisor_note ?? '—' }}</td>
-          <td class="small text-muted">{{ $r->responded_at ?? '—' }}</td>
+          
         </tr>
       @empty
         <tr>
-          <td colspan="6" class="py-4">لا توجد طلبات.</td>
+          <td colspan="5" class="py-4">لا توجد طلبات.</td>
         </tr>
       @endforelse
       </tbody>
